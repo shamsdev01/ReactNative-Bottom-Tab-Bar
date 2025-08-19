@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "liquid-glass",
-    "slug": "liquid-glass",
+    "name": "ReactNative-FlatList",
+    "slug": "ReactNative-FlatList",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

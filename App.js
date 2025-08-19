@@ -1,12 +1,13 @@
 // import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { StatusBar } from 'expo-status-bar';
 import HomeScreen from './screens/HomeScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import { Ionicons } from '@expo/vector-icons';
 import { BlurView } from 'expo-blur';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, useColorScheme } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -14,6 +15,7 @@ import { TouchableOpacity, Text } from 'react-native';
 
 function LiquidGlassTabBar({ state, descriptors, navigation }) {
   return (
+    
     <View style={styles.floatingContainer}>
       <BlurView intensity={70} tint="light" style={styles.pillTabBar}>
         <View style={styles.tabRow}>
@@ -42,6 +44,7 @@ function LiquidGlassTabBar({ state, descriptors, navigation }) {
             };
 
             return (
+              
               <TouchableOpacity
                 key={route.key}
                 accessibilityRole="button"
@@ -67,7 +70,14 @@ function LiquidGlassTabBar({ state, descriptors, navigation }) {
 }
 
 export default function App() {
+  const colorScheme = useColorScheme()
   return (
+    <>
+    <StatusBar 
+    animated={true}
+     barStyle={colorScheme === "dark" ? "light-content" : "dark-content"}
+        backgroundColor={colorScheme === "dark" ? "#000" : "#fff"}
+      />
     <NavigationContainer>
       <Tab.Navigator
         tabBar={props => <LiquidGlassTabBar {...props} />}
@@ -93,6 +103,7 @@ export default function App() {
         <Tab.Screen name="Profile" component={ProfileScreen} />
       </Tab.Navigator>
     </NavigationContainer>
+    </>
   );
 }
 

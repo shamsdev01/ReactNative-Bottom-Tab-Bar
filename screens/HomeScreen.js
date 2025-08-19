@@ -1,10 +1,20 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
+import Card from '../components/Card';
+
+const DATA = Array.from({ length: 25 }, (_, i) => ({ id: i.toString(), title: ` ${i + 1}` }));
 
 export default function HomeScreen() {
+  const renderItem = ({ item }) => <Card title={item.title} />;
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Home Screen</Text>
+      <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+        numColumns={2}
+        contentContainerStyle={styles.list}
+      />
     </View>
   );
 }
@@ -12,12 +22,10 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#fff',
+    padding: 8,
   },
-  text: {
-    fontSize: 24,
-    color: '#333',
+  list: {
+    paddingVertical: 16,
   },
 });
